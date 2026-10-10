@@ -1,0 +1,570 @@
+{
+  "successful": true,
+  "data": {
+    "default_tab_id": "t.0",
+    "display_url": "https://docs.google.com/document/d/124jBWJI32o00d3W3XyIR0Lu8I_Xwj61R31-NXsb6atc/edit",
+    "documentId": "124jBWJI32o00d3W3XyIR0Lu8I_Xwj61R31-NXsb6atc",
+    "request_data": [
+      {
+        "insertText": {
+          "location": {
+            "index": 1
+          },
+          "text": "🚀 The AU AI Compliance Playbook — Launch & Outreach Packet\n"
+        }
+      },
+      {
+        "updateParagraphStyle": {
+          "fields": "namedStyleType",
+          "paragraphStyle": {
+            "namedStyleType": "HEADING_1"
+          },
+          "range": {
+            "endIndex": 60,
+            "startIndex": 1
+          }
+        }
+      },
+      {
+        "updateTextStyle": {
+          "fields": "bold",
+          "range": {
+            "endIndex": 60,
+            "startIndex": 1
+          },
+          "textStyle": {
+            "bold": true
+          }
+        }
+      },
+      {
+        "insertText": {
+          "location": {
+            "index": 61
+          },
+          "text": "1. B2B Email Outreach Campaign (For Local SMBs & Agencies)\n"
+        }
+      },
+      {
+        "updateParagraphStyle": {
+          "fields": "namedStyleType",
+          "paragraphStyle": {
+            "namedStyleType": "HEADING_2"
+          },
+          "range": {
+            "endIndex": 119,
+            "startIndex": 61
+          }
+        }
+      },
+      {
+        "updateTextStyle": {
+          "fields": "bold",
+          "range": {
+            "endIndex": 119,
+            "startIndex": 61
+          },
+          "textStyle": {
+            "bold": true
+          }
+        }
+      },
+      {
+        "insertText": {
+          "location": {
+            "index": 120
+          },
+          "text": "Subject: Is your AI usage compliant with the Privacy Act 1988 (APP 1.7)?\n"
+        }
+      },
+      {
+        "updateTextStyle": {
+          "fields": "bold",
+          "range": {
+            "endIndex": 128,
+            "startIndex": 120
+          },
+          "textStyle": {
+            "bold": true
+          }
+        }
+      },
+      {
+        "insertText": {
+          "location": {
+            "index": 193
+          },
+          "text": "Hi [First Name],\n"
+        }
+      },
+      {
+        "insertText": {
+          "location": {
+            "index": 210
+          },
+          "text": "With the OAIC actively reviewing automated decision-making and AI tools under the Privacy Act 1988, many Australian businesses operating above the threshold are unknowingly exposed to compliance risks regarding tools like ChatGPT, Claude, and Copilot.\n"
+        }
+      },
+      {
+        "insertText": {
+          "location": {
+            "index": 462
+          },
+          "text": "We’ve just released The AU AI Compliance Playbook, designed specifically for Australian small business leaders and agencies. It includes:\n- A 90-day compliance checklist\n- Privacy policy templates with AI disclosure wording\n- Internal AI usage guardrails & data flow mapping\n"
+        }
+      },
+      {
+        "updateTextStyle": {
+          "fields": "bold",
+          "range": {
+            "endIndex": 511,
+            "startIndex": 482
+          },
+          "textStyle": {
+            "bold": true
+          }
+        }
+      },
+      {
+        "insertText": {
+          "location": {
+            "index": 737
+          },
+          "text": "Option 1 (DIY Playbook): Instant access to the 207-page guide + templates ($149 AUD) -> Stripe Checkout\nOption 2 (DFY Audit): Book a 1-on-1 AI Compliance Audit & Report ($1,500 AUD) -> Book via Calendly\n"
+        }
+      },
+      {
+        "updateTextStyle": {
+          "fields": "bold",
+          "range": {
+            "endIndex": 761,
+            "startIndex": 737
+          },
+          "textStyle": {
+            "bold": true
+          }
+        }
+      },
+      {
+        "updateTextStyle": {
+          "fields": "link",
+          "range": {
+            "endIndex": 840,
+            "startIndex": 825
+          },
+          "textStyle": {
+            "link": {
+              "url": "https://buy.stripe.com/8x26oJ4Z30rx0zb6rKbMQ0u"
+            }
+          }
+        }
+      },
+      {
+        "updateTextStyle": {
+          "fields": "bold",
+          "range": {
+            "endIndex": 862,
+            "startIndex": 841
+          },
+          "textStyle": {
+            "bold": true
+          }
+        }
+      },
+      {
+        "updateTextStyle": {
+          "fields": "link",
+          "range": {
+            "endIndex": 939,
+            "startIndex": 922
+          },
+          "textStyle": {
+            "link": {
+              "url": "https://calendly.com/brett-sjoberg/ai-compliance-audit"
+            }
+          }
+        }
+      },
+      {
+        "insertText": {
+          "location": {
+            "index": 940
+          },
+          "text": "Would you like a complimentary 5-minute AI risk assessment for [Company Name]?\n"
+        }
+      },
+      {
+        "insertText": {
+          "location": {
+            "index": 1019
+          },
+          "text": "Best regards,\n"
+        }
+      },
+      {
+        "insertText": {
+          "location": {
+            "index": 1033
+          },
+          "text": "Brett Anthony Sjoberg\nFair Dinkum Publishing & AI Advisory  \n"
+        }
+      },
+      {
+        "insertText": {
+          "location": {
+            "index": 1094
+          },
+          "text": "__________________________________________________\n"
+        }
+      },
+      {
+        "updateTextStyle": {
+          "fields": "foregroundColor",
+          "range": {
+            "endIndex": 1144,
+            "startIndex": 1094
+          },
+          "textStyle": {
+            "foregroundColor": {
+              "color": {
+                "rgbColor": {
+                  "blue": 0.7,
+                  "green": 0.7,
+                  "red": 0.7
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "updateParagraphStyle": {
+          "fields": "alignment",
+          "paragraphStyle": {
+            "alignment": "CENTER"
+          },
+          "range": {
+            "endIndex": 1145,
+            "startIndex": 1094
+          }
+        }
+      },
+      {
+        "insertText": {
+          "location": {
+            "index": 1145
+          },
+          "text": "2. Social Launch Posts (LinkedIn / Twitter)\n"
+        }
+      },
+      {
+        "updateParagraphStyle": {
+          "fields": "namedStyleType",
+          "paragraphStyle": {
+            "namedStyleType": "HEADING_2"
+          },
+          "range": {
+            "endIndex": 1188,
+            "startIndex": 1145
+          }
+        }
+      },
+      {
+        "updateTextStyle": {
+          "fields": "bold",
+          "range": {
+            "endIndex": 1188,
+            "startIndex": 1145
+          },
+          "textStyle": {
+            "bold": true
+          }
+        }
+      },
+      {
+        "insertText": {
+          "location": {
+            "index": 1189
+          },
+          "text": "Post 1: The Regulatory Wake-Up Call\n"
+        }
+      },
+      {
+        "updateParagraphStyle": {
+          "fields": "namedStyleType",
+          "paragraphStyle": {
+            "namedStyleType": "HEADING_3"
+          },
+          "range": {
+            "endIndex": 1224,
+            "startIndex": 1189
+          }
+        }
+      },
+      {
+        "updateTextStyle": {
+          "fields": "bold",
+          "range": {
+            "endIndex": 1224,
+            "startIndex": 1189
+          },
+          "textStyle": {
+            "bold": true
+          }
+        }
+      },
+      {
+        "insertText": {
+          "location": {
+            "index": 1225
+          },
+          "text": "🚨 Is your business exposed under the Privacy Act 1988?\n"
+        }
+      },
+      {
+        "updateTextStyle": {
+          "fields": "bold",
+          "range": {
+            "endIndex": 1280,
+            "startIndex": 1228
+          },
+          "textStyle": {
+            "bold": true
+          }
+        }
+      },
+      {
+        "insertText": {
+          "location": {
+            "index": 1281
+          },
+          "text": "If your business uses ChatGPT to draft client emails, automated chatbots for customer support, or AI algorithms for lead scoring, you are processing personal data under APP 1.7. \n"
+        }
+      },
+      {
+        "insertText": {
+          "location": {
+            "index": 1460
+          },
+          "text": "The OAIC is actively monitoring automated decisions. Using consumer-grade AI tools without proper data governance or privacy disclosures can result in significant exposure.\n"
+        }
+      },
+      {
+        "insertText": {
+          "location": {
+            "index": 1633
+          },
+          "text": "We’ve built The AU AI Compliance Playbook—a 207-page practical guide, 90-day checklist, and ready-to-use privacy policy templates built specifically for Australian businesses.\n"
+        }
+      },
+      {
+        "updateTextStyle": {
+          "fields": "bold",
+          "range": {
+            "endIndex": 1674,
+            "startIndex": 1645
+          },
+          "textStyle": {
+            "bold": true
+          }
+        }
+      },
+      {
+        "insertText": {
+          "location": {
+            "index": 1809
+          },
+          "text": "👉 Grab the playbook: https://buy.stripe.com/8x26oJ4Z30rx0zb6rKbMQ0u\n👉 Or book a Done-For-You AI Compliance Audit: https://calendly.com/brett-sjoberg/ai-compliance-audit\n"
+        }
+      },
+      {
+        "insertText": {
+          "location": {
+            "index": 1980
+          },
+          "text": "AICompliance #PrivacyAct #AustralianBusiness #GenAI #RiskManagement\n"
+        }
+      },
+      {
+        "updateParagraphStyle": {
+          "fields": "namedStyleType",
+          "paragraphStyle": {
+            "namedStyleType": "HEADING_1"
+          },
+          "range": {
+            "endIndex": 2047,
+            "startIndex": 1980
+          }
+        }
+      },
+      {
+        "updateTextStyle": {
+          "fields": "bold",
+          "range": {
+            "endIndex": 2047,
+            "startIndex": 1980
+          },
+          "textStyle": {
+            "bold": true
+          }
+        }
+      },
+      {
+        "insertText": {
+          "location": {
+            "index": 2048
+          },
+          "text": "__________________________________________________\n"
+        }
+      },
+      {
+        "updateTextStyle": {
+          "fields": "foregroundColor",
+          "range": {
+            "endIndex": 2098,
+            "startIndex": 2048
+          },
+          "textStyle": {
+            "foregroundColor": {
+              "color": {
+                "rgbColor": {
+                  "blue": 0.7,
+                  "green": 0.7,
+                  "red": 0.7
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "updateParagraphStyle": {
+          "fields": "alignment",
+          "paragraphStyle": {
+            "alignment": "CENTER"
+          },
+          "range": {
+            "endIndex": 2099,
+            "startIndex": 2048
+          }
+        }
+      },
+      {
+        "insertText": {
+          "location": {
+            "index": 2099
+          },
+          "text": "3. Consulting Intake & Booking Integration\n"
+        }
+      },
+      {
+        "updateParagraphStyle": {
+          "fields": "namedStyleType",
+          "paragraphStyle": {
+            "namedStyleType": "HEADING_2"
+          },
+          "range": {
+            "endIndex": 2141,
+            "startIndex": 2099
+          }
+        }
+      },
+      {
+        "updateTextStyle": {
+          "fields": "bold",
+          "range": {
+            "endIndex": 2141,
+            "startIndex": 2099
+          },
+          "textStyle": {
+            "bold": true
+          }
+        }
+      },
+      {
+        "insertText": {
+          "location": {
+            "index": 2142
+          },
+          "text": "Calendly Booking Link: https://calendly.com/brett-sjoberg/ai-compliance-audit\n"
+        }
+      },
+      {
+        "updateTextStyle": {
+          "fields": "bold",
+          "range": {
+            "endIndex": 2164,
+            "startIndex": 2142
+          },
+          "textStyle": {
+            "bold": true
+          }
+        }
+      },
+      {
+        "updateTextStyle": {
+          "fields": "weightedFontFamily,fontSize,backgroundColor",
+          "range": {
+            "endIndex": 2219,
+            "startIndex": 2165
+          },
+          "textStyle": {
+            "backgroundColor": {
+              "color": {
+                "rgbColor": {
+                  "blue": 0.95,
+                  "green": 0.95,
+                  "red": 0.95
+                }
+              }
+            },
+            "fontSize": {
+              "magnitude": 10,
+              "unit": "PT"
+            },
+            "weightedFontFamily": {
+              "fontFamily": "Consolas"
+            }
+          }
+        }
+      },
+      {
+        "insertText": {
+          "location": {
+            "index": 2220
+          },
+          "text": "Service Tier: $1,500 AUD / audit (Includes 1-on-1 discovery, tool stack audit, custom privacy policy update, and signed compliance report).\n"
+        }
+      },
+      {
+        "updateTextStyle": {
+          "fields": "bold",
+          "range": {
+            "endIndex": 2233,
+            "startIndex": 2220
+          },
+          "textStyle": {
+            "bold": true
+          }
+        }
+      },
+      {
+        "createParagraphBullets": {
+          "bulletPreset": "BULLET_DISC_CIRCLE_SQUARE",
+          "range": {
+            "endIndex": 2360,
+            "startIndex": 2142
+          }
+        }
+      }
+    ],
+    "revisionId": "AHj4eMSpHqnryjEe4iuwnnKEhegAeKvWBG_WB9W0iqLxnt3FULUBp56Avs4AOxuXF0zWvmHiCMAezh2-2uFfsPMVPwf1S474g-LvZ6ttOW4",
+    "suggestionsViewMode": "SUGGESTIONS_INLINE",
+    "tab_ids": [
+      "t.0"
+    ],
+    "title": "The AU AI Compliance Playbook - Launch & Outreach Packet (Fair Dinkum)"
+  },
+  "error": null,
+  "logId": "log_REw3CfjCSUWc"
+}

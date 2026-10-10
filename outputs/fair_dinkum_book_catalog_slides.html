@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fair Dinkum Publishing — Digital Product Catalog & Book Deck</title>
+<style>
+  :root {
+    --bg: #090d16;
+    --card-bg: #111827;
+    --accent: #f59e0b;
+    --accent-glow: rgba(245, 158, 11, 0.3);
+    --text: #f9fafb;
+    --text-muted: #9ca3af;
+    --border: #1f2937;
+    --primary: #3b82f6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  body { background: var(--bg); color: var(--text); height: 100vh; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
+  
+  .deck-container { flex: 1; position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .slide { position: absolute; width: 85%; max-width: 1000px; height: 80%; background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 48px; display: flex; flex-direction: column; justify-content: space-between; opacity: 0; pointer-events: none; transform: scale(0.95) translateY(20px); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+  .slide.active { opacity: 1; pointer-events: auto; transform: scale(1) translateY(0); }
+  
+  .slide-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 16px; }
+  .brand { font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+  .slide-number { font-size: 0.85rem; color: var(--text-muted); }
+  
+  .slide-body { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 20px; margin: 20px 0; }
+  h1 { font-size: 2.5rem; font-weight: 800; line-height: 1.2; background: linear-gradient(135deg, #fff 30%, #9ca3af 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  h2 { font-size: 1.8rem; font-weight: 700; color: var(--accent); }
+  p { font-size: 1.15rem; color: var(--text-muted); line-height: 1.6; }
+  
+  .price-tag { display: inline-block; background: rgba(59, 130, 246, 0.15); color: var(--primary); padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 1.1rem; border: 1px solid rgba(59, 130, 246, 0.3); width: fit-content; }
+  
+  .features-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .feature-item { background: rgba(255,255,255,0.03); padding: 12px 16px; border-radius: 8px; border: 1px solid var(--border); font-size: 0.95rem; color: var(--text); }
+  
+  .slide-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 20px; }
+  .btn { background: var(--accent); color: #000; padding: 12px 28px; border-radius: 8px; font-weight: 700; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 12px var(--accent-glow); display: inline-block; }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px var(--accent-glow); }
+  
+  .controls { display: flex; gap: 12px; align-items: center; }
+  .nav-btn { background: var(--border); color: var(--text); border: none; padding: 10px 18px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: background 0.2s; }
+  .nav-btn:hover { background: #374151; }
+  
+  .hero-slide { text-align: center; align-items: center; }
+  .hero-slide h1 { font-size: 3rem; }
+  .hero-slide p { max-width: 600px; margin: 0 auto; }
+</style>
+</head>
+<body>
+
+<div class="deck-container">
+
+  <!-- Slide 1: Title -->
+  <div class="slide active hero-slide" data-slide="1">
+    <div class="slide-header">
+      <span class="brand">Fair Dinkum Publishing & AI Advisory</span>
+      <span class="slide-number">01 / 11</span>
+    </div>
+    <div class="slide-body">
+      <h1>Autonomous Solopreneur & Digital Product Catalog</h1>
+      <p>Edge-native playbooks, AI compliance frameworks, and high-margin digital assets built for modern creators and enterprises.</p>
+      <div style="margin-top: 20px;">
+        <span class="price-tag">Catalog 2026 Edition</span>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span style="color: var(--text-muted); font-size: 0.9rem;">Use Arrow Keys or Buttons to Navigate</span>
+      <div class="controls">
+        <button class="nav-btn" onclick="prevSlide()">← Prev</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 2: AU AI Compliance Playbook -->
+  <div class="slide" data-slide="2">
+    <div class="slide-header">
+      <span class="brand">Tier 3 / Regulatory Playbook</span>
+      <span class="slide-number">02 / 11</span>
+    </div>
+    <div class="slide-body">
+      <h2>The AU AI Compliance Playbook</h2>
+      <p>Essential guidance and privacy policy templates masterminded for Australian fintechs, lenders, and e-commerce navigating Privacy Act APP 1.7 automated decision-making mandates.</p>
+      <div class="price-tag">A$147 AUD</div>
+      <div class="features-list">
+        <div class="feature-item">✓ 207-Page Comprehensive Guide</div>
+        <div class="feature-item">✓ 90-Day Compliance Checklist</div>
+        <div class="feature-item">✓ AI Disclosure Policy Templates</div>
+        <div class="feature-item">✓ Data Flow & Risk Mapping</div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <a href="https://buy.stripe.com/14A5kF77ba27bdPg2kbMQ0A" target="_blank" class="btn">Secure Checkout ($147)</a>
+      <div class="controls">
+        <button class="nav-btn" onclick="prevSlide()">← Prev</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 3: AU AI Compliance Readiness Report -->
+  <div class="slide" data-slide="3">
+    <div class="slide-header">
+      <span class="brand">Tier 5 / Advisory Audit</span>
+      <span class="slide-number">03 / 11</span>
+    </div>
+    <div class="slide-body">
+      <h2>AU AI Compliance Readiness Report</h2>
+      <p>Done-for-you automated regulatory scan, custom risk assessment report, and 1-on-1 strategy session to bulletproof your AI stack before December 10, 2026.</p>
+      <div class="price-tag">A$149 AUD</div>
+      <div class="features-list">
+        <div class="feature-item">✓ Automated Stack Scan</div>
+        <div class="feature-item">✓ Custom PDF Audit Report</div>
+        <div class="feature-item">✓ Priority Risk Mitigation Plan</div>
+        <div class="feature-item">✓ 1-on-1 Strategy Session</div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <a href="https://buy.stripe.com/14A3cx3UZb6bbdP8zSbMQ0z" target="_blank" class="btn">Secure Checkout ($149)</a>
+      <div class="controls">
+        <button class="nav-btn" onclick="prevSlide()">← Prev</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 4: Automated Book Writer & Workforce -->
+  <div class="slide" data-slide="4">
+    <div class="slide-header">
+      <span class="brand">Enterprise Tier / SaaS Subscription</span>
+      <span class="slide-number">04 / 11</span>
+    </div>
+    <div class="slide-body">
+      <h2>Automated Book Writer & Workforce</h2>
+      <p>Deploy a fully autonomous multi-agent workforce that researches, writes, formats, and publishes professional EPUB/PDF books and digital storefronts on autopilot.</p>
+      <div class="price-tag">A$99 / month</div>
+      <div class="features-list">
+        <div class="feature-item">✓ Multi-Agent Orchestration</div>
+        <div class="feature-item">✓ Automated PDF & Cover Generation</div>
+        <div class="feature-item">✓ RAG Vector Memory Integration</div>
+        <div class="feature-item">✓ One-Click Gumroad & Stripe Sync</div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <a href="https://buy.stripe.com/4gMcN7crv3DJ81D4jCbMQ0I" target="_blank" class="btn">Subscribe ($99/mo)</a>
+      <div class="controls">
+        <button class="nav-btn" onclick="prevSlide()">← Prev</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 5: Aussie Agent Workflowz -->
+  <div class="slide" data-slide="5">
+    <div class="slide-header">
+      <span class="brand">Tier 2 / Workflow Toolkit</span>
+      <span class="slide-number">05 / 11</span>
+    </div>
+    <div class="slide-body">
+      <h2>Aussie Agent Workflowz Playbook</h2>
+      <p>Battle-tested Python and Composio agent workflows designed specifically for Australian businesses to automate customer support, outreach, and accounting.</p>
+      <div class="price-tag">A$49 AUD</div>
+      <div class="features-list">
+        <div class="feature-item">✓ Composio Gmail & Calendar Agents</div>
+        <div class="feature-item">✓ ClickSend SMS Review Flywheels</div>
+        <div class="feature-item">✓ Cloudflare Worker Webhooks</div>
+        <div class="feature-item">✓ Production-Ready Source Code</div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <a href="https://buy.stripe.com/4gM3cx77bcafdlX3fybMQ0B" target="_blank" class="btn">Secure Checkout ($49)</a>
+      <div class="controls">
+        <button class="nav-btn" onclick="prevSlide()">← Prev</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 6: Skate + Graffiti Bundle -->
+  <div class="slide" data-slide="6">
+    <div class="slide-header">
+      <span class="brand">Special Bundle / Cultural History</span>
+      <span class="slide-number">06 / 11</span>
+    </div>
+    <div class="slide-body">
+      <h2>Skate + Graffiti 2-Pack Bundle</h2>
+      <p>The ultimate cultural history bundle pairing two comprehensive design and subculture books at a 22% discount.</p>
+      <div class="price-tag">A$45 AUD</div>
+      <div class="features-list">
+        <div class="feature-item">✓ History of Skateboarding (114pp)</div>
+        <div class="feature-item">✓ History of Graffiti (120pp)</div>
+        <div class="feature-item">✓ Paginated PDFs & Pageless Flipbooks</div>
+        <div class="feature-item">✓ High-Resolution Cover Art Assets</div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <a href="https://buy.stripe.com/7sY3cxbnr5LRdlX2bubMQ0C" target="_blank" class="btn">Secure Checkout ($45)</a>
+      <div class="controls">
+        <button class="nav-btn" onclick="prevSlide()">← Prev</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 7: CC0 Sample Library Curation -->
+  <div class="slide" data-slide="7">
+    <div class="slide-header">
+      <span class="brand">Creator Tier / Asset Pack</span>
+      <span class="slide-number">07 / 11</span>
+    </div>
+    <div class="slide-body">
+      <h2>CC0 Sample Library Curation</h2>
+      <p>Curated archive of high-fidelity public domain audio samples, textures, and visual assets ready for commercial digital production and music composition.</p>
+      <div class="price-tag">A$40 AUD</div>
+      <div class="features-list">
+        <div class="feature-item">✓ 100% CC0 Royalty-Free Assets</div>
+        <div class="feature-item">✓ Master Audio Stems & Textures</div>
+        <div class="feature-item">✓ High-Res Visual Backgrounds</div>
+        <div class="feature-item">✓ Instant Cloud Storage Access</div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <a href="https://buy.stripe.com/cNi8wR8bf2zF3LneYgbMQ0D" target="_blank" class="btn">Secure Checkout ($40)</a>
+      <div class="controls">
+        <button class="nav-btn" onclick="prevSlide()">← Prev</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 8: History of Graffiti -->
+  <div class="slide" data-slide="8">
+    <div class="slide-header">
+      <span class="brand">Tier 1 / Cultural History</span>
+      <span class="slide-number">08 / 11</span>
+    </div>
+    <div class="slide-body">
+      <h2>The History of Graffiti</h2>
+      <p>From subway cars in 1970s New York to global contemporary galleries—explore the typography, rebellion, and evolution of modern street art.</p>
+      <div class="price-tag">A$29 AUD</div>
+      <div class="features-list">
+        <div class="feature-item">✓ 120-Page Illustrated Guide</div>
+        <div class="feature-item">✓ Eras: Philly to Berlin Wall</div>
+        <div class="feature-item">✓ Typography & Style Analysis</div>
+        <div class="feature-item">✓ EPUB & PDF Formats</div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <a href="https://buy.stripe.com/28EaEZdvz6PV81DcQ8bMQ0E" target="_blank" class="btn">Secure Checkout ($29)</a>
+      <div class="controls">
+        <button class="nav-btn" onclick="prevSlide()">← Prev</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 9: History of Skateboarding -->
+  <div class="slide" data-slide="9">
+    <div class="slide-header">
+      <span class="brand">Tier 1 / Cultural History</span>
+      <span class="slide-number">09 / 11</span>
+    </div>
+    <div class="slide-body">
+      <h2>The History of Skateboarding</h2>
+      <p>From clay wheels and sidewalk surfing in the 1950s to Dogtown pioneers, the Bones Brigade, and Tokyo 2020 Olympic competition.</p>
+      <div class="price-tag">A$29 AUD</div>
+      <div class="features-list">
+        <div class="feature-item">✓ 114-Page Comprehensive Book</div>
+        <div class="feature-item">✓ 18 Exhaustive Historical Eras</div>
+        <div class="feature-item">✓ High-Res Flipbook Included</div>
+        <div class="feature-item">✓ Instant Download ZIP</div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <a href="https://buy.stripe.com/00w9AV77ba27bdPg2kbMQ0F" target="_blank" class="btn">Secure Checkout ($29)</a>
+      <div class="controls">
+        <button class="nav-btn" onclick="prevSlide()">← Prev</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 10: Solopreneur OS -->
+  <div class="slide" data-slide="10">
+    <div class="slide-header">
+      <span class="brand">Tier 1 / Productivity Playbook</span>
+      <span class="slide-number">10 / 11</span>
+    </div>
+    <div class="slide-body">
+      <h2>Solopreneur OS</h2>
+      <p>The definitive operational system and framework for solo founders to automate admin, scale digital products, and run a lean 7-figure enterprise.</p>
+      <div class="price-tag">A$29 AUD</div>
+      <div class="features-list">
+        <div class="feature-item">✓ Operational Frameworks</div>
+        <div class="feature-item">✓ Notion & Markdown Templates</div>
+        <div class="feature-item">✓ Automation Checklist</div>
+        <div class="feature-item">✓ Financial Ledger Setup</div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <a href="https://buy.stripe.com/28EbJ3fDHein5Tv17qbMQ0G" target="_blank" class="btn">Secure Checkout ($29)</a>
+      <div class="controls">
+        <button class="nav-btn" onclick="prevSlide()">← Prev</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 11: AI Side Hustle Toolkit -->
+  <div class="slide" data-slide="11">
+    <div class="slide-header">
+      <span class="brand">Tier 1 / Micro-Toolkit</span>
+      <span class="slide-number">11 / 11</span>
+    </div>
+    <div class="slide-body">
+      <h2>AI Side Hustle Toolkit</h2>
+      <p>50 battle-tested AI prompts, geo-keyword checklists, and automation templates to launch a profitable side hustle with ChatGPT and Claude in 48 hours.</p>
+      <div class="price-tag">A$9.90 AUD</div>
+      <div class="features-list">
+        <div class="feature-item">✓ 50 Pro-Tested AI Prompts</div>
+        <div class="feature-item">✓ Local SEO Checklist</div>
+        <div class="feature-item">✓ Quick-Start PDF Guide</div>
+        <div class="feature-item">✓ Instant Access</div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <a href="https://buy.stripe.com/fZu5kFezDa27bdP7vObMQ0H" target="_blank" class="btn">Secure Checkout ($9.90)</a>
+      <div class="controls">
+        <button class="nav-btn" onclick="prevSlide()">← Prev</button>
+        <button class="nav-btn" onclick="endDeck()">Restart ↺</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  let currentSlide = 1;
+  const totalSlides = 11;
+
+  function showSlide(n) {
+    const slides = document.querySelectorAll('.slide');
+    if (n > totalSlides) currentSlide = 1;
+    else if (n < 1) currentSlide = totalSlides;
+    else currentSlide = n;
+
+    slides.forEach(slide => slide.classList.remove('active'));
+    document.querySelector(`.slide[data-slide="${currentSlide}"]`).classList.add('active');
+  }
+
+  function nextSlide() { showSlide(currentSlide + 1); }
+  function prevSlide() { showSlide(currentSlide - 1); }
+  function endDeck() { showSlide(1); }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'Space') nextSlide();
+    if (e.key === 'ArrowLeft') prevSlide();
+  });
+</script>
+
+</body>
+</html>
