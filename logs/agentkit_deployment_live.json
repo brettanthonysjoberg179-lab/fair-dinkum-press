@@ -1,0 +1,10 @@
+{
+  "product_name": "AgentKit Small Business Automation Pack",
+  "tagline": "Production-ready AI agent workflow packs for indie devs & small businesses (Lead Triage + Invoice Chaser).",
+  "price_aud": 59.0,
+  "gumroad_url": "https://buy.stripe.com/8x26oJ4Z30rx0zb6rKbMQ0u",
+  "github_repo": "https://github.com/fair-dinkum-publishing/agentkit-shop",
+  "hf_demo": "https://huggingface.co/spaces/fair-dinkum/agentkit-triage-demo",
+  "package_file": "dist/AgentKit-SmallBusiness-Pack-v1.0.zip",
+  "status": "LIVE"
+}
