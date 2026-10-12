@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brett Sjoberg — Digital Products</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --surface-hover: #1a1a25;
+      --border: #2a2a3a;
+      --text: #e8e8f0;
+      --text-muted: #8888a0;
+      --accent: #6366f1;
+      --accent-glow: rgba(99, 102, 241, 0.3);
+      --gradient-start: #6366f1;
+      --gradient-end: #a855f7;
+      --success: #10b981;
+      --radius: 12px;
+    }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+    /* Hero */
+    .hero { text-align: center; padding: 3rem 0 2rem; }
+    .hero-avatar {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 2rem; font-weight: 800; color: #fff;
+      box-shadow: 0 0 40px var(--accent-glow);
+    }
+    .hero h1 {
+      font-size: 2.25rem; font-weight: 800; letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #fff 0%, var(--text-muted) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      color: var(--text-muted); font-size: 1.1rem; margin-top: 0.75rem;
+      max-width: 500px; margin-left: auto; margin-right: auto;
+    }
+
+    /* Section */
+    .section { margin: 2.5rem 0; }
+    .section-title {
+      font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 1rem;
+    }
+
+    /* Product Card */
+    .product-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .product-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .product-card-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 1rem; flex-wrap: wrap;
+    }
+    .product-name { font-size: 1.1rem; font-weight: 700; }
+    .product-badge {
+      font-size: 0.7rem; font-weight: 600; padding: 0.25rem 0.6rem;
+      border-radius: 99px; background: rgba(99, 102, 241, 0.15);
+      color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .product-desc { color: var(--text-muted); font-size: 0.9rem; margin: 0.75rem 0; }
+    .product-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 0.75rem 0; }
+    .product-tag {
+      font-size: 0.7rem; padding: 0.2rem 0.5rem; border-radius: 6px;
+      background: rgba(255,255,255,0.05); color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .product-footer {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border);
+    }
+    .product-price { font-size: 1.5rem; font-weight: 800; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.5rem; border-radius: 8px; border: none;
+      font-size: 0.9rem; font-weight: 600; cursor: pointer;
+      transition: all 0.2s; text-decoration: none;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+      color: #fff; box-shadow: 0 4px 20px var(--accent-glow);
+    }
+    .btn-primary:hover { box-shadow: 0 6px 30px var(--accent-glow); transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* Feature list */
+    .feature-list { list-style: none; margin: 0.75rem 0; }
+    .feature-list li {
+      padding: 0.35rem 0; font-size: 0.85rem; color: var(--text-muted);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .feature-list li::before {
+      content: "→"; color: var(--accent); font-weight: 600;
+    }
+
+    /* Status indicator */
+    .status-dot {
+      display: inline-block; width: 6px; height: 6px;
+      border-radius: 50%; background: var(--success);
+      margin-right: 0.4rem; animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center; padding: 2rem 0; color: var(--text-muted);
+      font-size: 0.8rem; border-top: 1px solid var(--border); margin-top: 3rem;
+    }
+    .footer a { color: var(--accent); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.75rem; }
+      .product-footer { flex-direction: column; gap: 0.75rem; align-items: flex-start; }
+      .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-avatar">BS</div>
+      <h1>Brett Sjoberg</h1>
+      <p>AI-powered digital products for real estate professionals. Instant download. Auto-fulfilled.</p>
+      <div style="margin-top: 1rem;">
+        <span class="status-dot"></span>
+        <span style="font-size: 0.8rem; color: var(--text-muted);">All products delivered instantly</span>
+      </div>
+    </div>
+
+    <!-- Products -->
+    <div class="section">
+      <div class="section-title">Products</div>
+
+      <!-- Product 1: AI Prompts -->
+      <div class="product-card">
+        <div class="product-card-header">
+          <div>
+            <div class="product-name">100 AI Prompts for Real Estate Agents</div>
+            <div class="product-badge">Digital Download</div>
+          </div>
+        </div>
+        <p class="product-desc">100 niche-specific AI prompts for real estate agents: listings, client outreach, market analysis, social media, and more. Includes PDF guide + JSON library + Canva templates.</p>
+        <ul class="feature-list">
+          <li>100 ready-to-use AI prompts across 10 categories</li>
+          <li>PDF guide with best practices & customization tips</li>
+          <li>JSON library for bulk import into your AI tools</li>
+          <li>Canva templates for social media content</li>
+          <li>Free lifetime updates</li>
+        </ul>
+        <div class="product-tags">
+          <span class="product-tag">ai-prompts</span>
+          <span class="product-tag">templates</span>
+          <span class="product-tag">real-estate</span>
+          <span class="product-tag">marketing</span>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">$29</div>
+          <a href="https://brettanthonysjoberg1.gumroad.com/l/ukhxn" class="btn btn-primary" data-gumroad-action="buy">
+            Buy Now →
+          </a>
+        </div>
+      </div>
+
+      <!-- Product 2: Coming Soon Placeholder -->
+      <div class="product-card" style="opacity: 0.6;">
+        <div class="product-card-header">
+          <div>
+            <div class="product-name">More products coming soon...</div>
+            <div class="product-badge" style="background: rgba(16, 185, 129, 0.15); color: var(--success);">Building</div>
+          </div>
+        </div>
+        <p class="product-desc">New digital products in development. Sign up for updates or follow along on GitHub.</p>
+      </div>
+    </div>
+
+    <!-- How It Works -->
+    <div class="section">
+      <div class="section-title">How Auto-Fulfillment Works</div>
+      <div class="product-card">
+        <div style="display: grid; gap: 1rem;">
+          <div style="display: flex; gap: 1rem; align-items: flex-start;">
+            <span style="font-size: 1.5rem; font-weight: 800; color: var(--accent); min-width: 2rem;">1.</span>
+            <div>
+              <div style="font-weight: 600;">Purchase</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">Buy instantly via Gumroad checkout. Supports all major payment methods.</div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 1rem; align-items: flex-start;">
+            <span style="font-size: 1.5rem; font-weight: 800; color: var(--accent); min-width: 2rem;">2.</span>
+            <div>
+              <div style="font-weight: 600;">Auto-Delivery</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">Files delivered automatically within seconds of confirmed payment. No waiting.</div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 1rem; align-items: flex-start;">
+            <span style="font-size: 1.5rem; font-weight: 800; color: var(--accent); min-width: 2rem;">3.</span>
+            <div>
+              <div style="font-weight: 600;">Access Anywhere</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">Download link sent to your email + available in your Gumroad library forever.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="section">
+      <div class="section-title">FAQ</div>
+      <div class="product-card">
+        <div style="margin-bottom: 1rem;">
+          <div style="font-weight: 600; margin-bottom: 0.25rem;">What format are the files?</div>
+          <div style="font-size: 0.85rem; color: var(--text-muted);">PDF + JSON + Canva templates. Works on any device.</div>
+        </div>
+        <div style="margin-bottom: 1rem;">
+          <div style="font-weight: 600; margin-bottom: 0.25ref;">Do I get updates?</div>
+          <div style="font-size: 0.85rem; color: var(--text-muted);">Yes — all future updates are free. You'll be notified via email.</div>
+        </div>
+        <div>
+          <div style="font-weight: 600; margin-bottom: 0.25ref;">Need a refund?</div>
+          <div style="font-size: 0.85rem; color: var(--text-muted);">Gumroad offers a 30-day no-questions-asked refund policy.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>© 2026 Brett Sjoberg · Powered by <a href="https://gumroad.com">Gumroad</a></p>
+      <p style="margin-top: 0.5rem;">
+        <a href="https://github.com/brettanthonysjoberg179">GitHub</a> ·
+        <a href="mailto:brettanthonysjoberg179@gmail.com">Email</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

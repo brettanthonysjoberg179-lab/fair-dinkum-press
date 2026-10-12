@@ -1,0 +1,41 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "anthropic/claude-sonnet-4-5",
+  "shell": "/bin/bash",
+  "formatter": true,
+  "default_agent": "hf-agent",
+  "mcp_servers": {
+    "hf": {
+      "command": "python3",
+      "args": ["/home/brettanthonysjoberg179/Bretts Agents/Agents/Software-Architect-Engineer-MCP/src/integrations/hf_mcp_server.py"],
+      "env": {
+        "HF_TOKEN": "${HF_TOKEN}",
+        "PYTHONPATH": "/home/brettanthonysjoberg179/Bretts Agents/Agents/Software-Architect-Engineer-MCP"
+      },
+      "transport": "stdio"
+    },
+    "architect": {
+      "command": "python3",
+      "args": ["/home/brettanthonysjoberg179/Bretts Agents/Agents/Software-Architect-Engineer-MCP/src/integrations/architect_mcp_server.py"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}",
+        "HF_TOKEN": "${HF_TOKEN}",
+        "HONCHO_API_KEY": "${HONCHO_API_KEY}",
+        "COMPOSIO_API_KEY": "${COMPOSIO_API_KEY}",
+        "PYTHONPATH": "/home/brettanthonysjoberg179/Bretts Agents/Agents/Software-Architect-Engineer-MCP"
+      },
+      "transport": "stdio"
+    }
+  },
+  "agents": {
+    "hf-agent": {
+      "description": "HuggingFace specialist — model search, comparison, deployment, datasets, spaces, and papers",
+      "mode": "primary",
+      "permissions": [
+        { "action": "shell", "resource": "*", "effect": "ask" },
+        { "action": "edit", "resource": "*", "effect": "ask" },
+        { "action": "read", "resource": "*", "effect": "allow" }
+      ]
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "successful": true,
+  "data": {
+    "after": "t3_1wgsspu",
+    "before": null,
+    "posts": [
+      {
+        "author": "Efficient_Horror4938",
+        "created_datetime": "2026-09-15T06:48:24+00:00",
+        "created_utc": 1789454904,
+        "id": "1wgsspu",
+        "is_self": true,
+        "num_comments": 13,
+        "over_18": false,
+        "permalink": "https://www.reddit.com/r/AusPropertyChat/comments/1wgsspu/concrete_removal_how_difficult_is_it/",
+        "score": 3,
+        "selftext": "I'm a FHB in Adelaide (western suburbs) and a lot of properties that I otherwise like have fully paved or concreted backyards.\n\nI get that we need some concrete around the house for stability and drainage, not to mention just walking around. But it would also be nice to have space to plant something in the actual ground. Plus I see all that concrete and just think how hot it's gonna be in summer.\n\nSo how difficult/expensive is it to remove concrete from a backyard (or unecessarily large driveway)? Is there a big difference between a house built in the last decade or so vs further back?\n\nAnd I'm kind of assuming pavers are straightforward to remove - is that right?\n\nEdit: thanks for the info! I will stop worrying about it and not let it interfere with the search.",
+        "subreddit": "AusPropertyChat",
+        "subreddit_prefixed": "r/AusPropertyChat",
+        "title": "Concrete removal - how difficult is it?",
+        "url": "https://www.reddit.com/r/AusPropertyChat/comments/1wgsspu/concrete_removal_how_difficult_is_it/"
+      }
+    ],
+    "total_results": 1
+  },
+  "error": null,
+  "logId": "log_R0v6LlrJgNwA"
+}

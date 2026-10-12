@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trend Pro — Digital Product Concept Generator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0b0b0f;
+  --surface: #13131a;
+  --surface-2: #1a1a24;
+  --surface-hover: #22222e;
+  --border: #2a2a38;
+  --border-active: #3d3d50;
+  --text: #e8e8f0;
+  --text-muted: #8a8aa0;
+  --accent: #d97706;
+  --accent-soft: rgba(217, 119, 6, 0.15);
+  --accent-text: #fbbf24;
+  --radius: 10px;
+  --radius-sm: 6px;
+  --space: 16px;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 16px; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+.app {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space);
+}
+
+/* Header */
+.header {
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand-logo {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 14px; color: #000;
+}
+.brand-name { font-weight: 700; font-size: 1.05rem; letter-spacing: -0.01em; }
+.brand-tag { font-size: 0.7rem; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; }
+.header-meta { font-size: 0.75rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+
+/* Main */
+.main {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 24px;
+  padding: 24px 0;
+  min-height: 0;
+}
+@media (max-width: 860px) {
+  .main { grid-template-columns: 1fr; }
+}
+
+/* Input Panel */
+.input-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 0;
+}
+.panel-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+.textarea-wrap { position: relative; flex: 1; min-height: 200px; }
+textarea {
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  padding: 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  resize: none;
+  outline: none;
+  transition: border-color 0.15s;
+}
+textarea:focus { border-color: var(--accent); }
+textarea::placeholder { color: var(--text-muted); opacity: 0.5; }
+
+.controls-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.btn {
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Inter', sans-serif;
+}
+.btn:active { transform: scale(0.98); }
+.btn-primary {
+  background: var(--accent);
+  color: #000;
+}
+.btn-primary:hover { background: #f59e0b; }
+.btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn-secondary {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--surface-hover); }
+
+.count-toggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+.count-btn {
+  width: 32px; height: 32px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.count-btn.active {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent-text);
+}
+.count-btn:not(.active):hover { background: var(--surface-hover); }
+
+/* Preview Panel */
+.preview-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+}
+.preview-title { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); }
+.preview-count {
+  font-size: 0.7rem;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-muted);
+}
+.preview-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 300px;
+}
+
+/* Concept Card */
+.concept {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  transition: border-color 0.15s;
+}
+.concept:hover { border-color: var(--border-active); }
+.concept-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.concept-name { font-weight: 600; font-size: 0.95rem; line-height: 1.3; }
+.concept-price {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-text);
+  background: var(--accent-soft);
+  padding: 3px 8px;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+.concept-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+.concept-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+.concept-tag {
+  font-size: 0.65rem;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: var(--surface-2);
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.02em;
+}
+.concept-actions { display: flex; gap: 8px; }
+.concept-btn {
+  font-size: 0.7rem;
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  transition: all 0.15s;
+}
+.concept-btn:hover { border-color: var(--accent); color: var(--accent-text); }
+.concept-btn.primary {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent-text);
+}
+.concept-btn.primary:hover { background: var(--accent); color: #000; }
+
+/* Empty State */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 60px 20px;
+  text-align: center;
+  color: var(--text-muted);
+}
+.empty-icon {
+  font-size: 2.5rem;
+  opacity: 0.4;
+}
+.empty-text { font-size: 0.9rem; max-width: 280px; }
+.empty-hint { font-size: 0.75rem; opacity: 0.6; }
+
+/* Footer */
+.footer {
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+.footer-stats { display: flex; gap: 16px; }
+.stat-val { color: var(--text); font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--border-active); }
+
+/* Loading */
+.loading .concept { opacity: 0.5; }
+.skeleton {
+  background: linear-gradient(90deg, var(--surface) 25%, var(--surface-2) 50%, var(--surface) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-sm);
+  height: 80px;
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  opacity: 0;
+  transition: all 0.3s;
+  pointer-events: none;
+  z-index: 100;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- Header -->
+  <header class="header">
+    <div class="brand">
+      <div class="brand-logo">TP</div>
+      <div>
+        <div class="brand-name">Trend Pro</div>
+        <div class="brand-tag">Concept Generator</div>
+      </div>
+    </div>
+    <div class="header-meta" id="headerMeta">v1.0 · Local Engine</div>
+  </header>
+
+  <!-- Main -->
+  <main class="main">
+    <!-- Input -->
+    <div class="input-panel">
+      <div class="panel-label">Describe your product idea</div>
+      <div class="textarea-wrap">
+        <textarea id="input" placeholder="e.g. A toolkit for freelance writers to pitch clients faster, including email templates, pricing calculators, and a client CRM..."></textarea>
+      </div>
+      <div class="controls-row">
+        <button class="btn btn-primary" id="generateBtn" onclick="generate()">Generate Concepts</button>
+        <button class="btn btn-secondary" onclick="clearAll()">Clear</button>
+        <div class="count-toggle">
+          <button class="count-btn" onclick="setCount(3)" id="count3">3</button>
+          <button class="count-btn active" onclick="setCount(5)" id="count5">5</button>
+          <button class="count-btn" onclick="setCount(8)" id="count8">8</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Preview -->
+    <div class="preview-panel">
+      <div class="preview-header">
+        <span class="preview-title">Live Preview</span>
+        <span class="preview-count" id="previewCount">0 concepts</span>
+      </div>
+      <div class="preview-body" id="previewBody">
+        <div class="empty">
+          <div class="empty-icon">◈</div>
+          <div class="empty-text">Enter a product description and generate to see digital product concepts here.</div>
+          <div class="empty-hint">Concepts include pricing, format, and Gumroad-ready tags.</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-stats">
+      <span>Total generated: <span class="stat-val" id="statTotal">0</span></span>
+      <span>Avg price: <span class="stat-val" id="statAvg">—</span></span>
+    </div>
+    <div>© 2026 Trend Pro · Built for digital product sellers</div>
+  </footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const PRESETS = {
+  categories: ['Templates', 'Prompt Pack', 'Notion System', 'Spreadsheet Kit', 'Mini Course', 'Toolkit', 'Guide + Templates', 'Community Access', 'Swipe File', 'Workbook'],
+  formats: ['PDF + Notion', 'Canva + PDF', 'JSON + Markdown', 'Video + Templates', 'Excel + Guide', 'Google Sheets Kit', 'Figma + PDF', 'Zip Bundle'],
+  niches: {
+    'real estate': ['Agent Listing Toolkit', 'PropertyShowing CRM', 'MarketAnalysis Pro', 'ClientOnboarding Kit', 'OpenHouse Planner'],
+    'content creator': ['YouTube Script Pack', 'ContentCalendar Pro', 'SponsorPitch Deck', 'ShortsScript Vault', 'Analytics Dashboard'],
+    'writer': ['PitchTemplate Kit', 'RateCalculator', 'ClientCRM', 'EditorialCalendar', 'FreelanceContract Pack'],
+    'developer': ['CodeSnippet Library', 'APITesting Kit', 'DevOnboarding System', 'BugReport Framework', 'SprintPlanner'],
+    'freelance': ['ProposalTemplate Pack', 'InvoiceSystem', 'ClientPortal Kit', 'ScopeOfWork Builder', 'TestimonialCollector'],
+    'social media': ['ContentPillar Planner', 'CaptionTemplate Vault', 'AnalyticsReport Kit', 'HashtagStrategy System', 'BrandVoice Guide'],
+    'ai': ['PromptEngineering Kit', 'AgentStarter Pack', 'WorkflowAutomation Library', 'UseCase Database', 'EvaluationFramework'],
+    'marketing': ['CampaignPlanner', 'EmailSequence Swipe', 'LandingPage Kit', 'SEOAudit Toolkit', 'AdCopy Generator'],
+    'design': ['DesignSystem Starter', 'ClientBrief Kit', 'PricingCalculator', 'PortfolioTemplate', 'FeedbackFramework'],
+    'coach': ['ClientIntake Kit', 'SessionPlanner', 'ProgressTracker', 'ContractTemplate', 'Worksheet Library'],
+  },
+  tags: ['digital-download', 'instant-delivery', 'commercial-use', 'lifetime-updates', 'gumroad-ready']
+};
+
+let conceptCount = 5;
+let totalGenerated = 0;
+let allPrices = [];
+
+function setCount(n) {
+  conceptCount = n;
+  document.querySelectorAll('.count-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('count' + n).classList.add('active');
+}
+
+function escapeHtml(s) {
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+function detectNiche(text) {
+  const lower = text.toLowerCase();
+  for (const [key, _] of Object.entries(PRESETS.niches)) {
+    if (lower.includes(key)) return key;
+  }
+  return null;
+}
+
+function pickNicheProducts(niche) {
+  const pool = PRESETS.niches[niche];
+  if (pool) return pool;
+  // Fallback: pick from all niche arrays
+  const all = Object.values(PRESETS.niches).flat();
+  return all;
+}
+
+function generate() {
+  const text = document.getElementById('input').value.trim();
+  if (!text) {
+    showToast('Enter a product description first');
+    return;
+  }
+
+  const btn = document.getElementById('generateBtn');
+  btn.disabled = true;
+  btn.textContent = 'Generating...';
+
+  // Simulate processing delay
+  setTimeout(() => {
+    const niche = detectNiche(text);
+    const nicheProducts = pickNicheProducts(niche);
+    const concepts = buildConcepts(text, nicheProducts);
+
+    renderConcepts(concepts);
+    updateStats(concepts);
+
+    btn.disabled = false;
+    btn.textContent = 'Generate Concepts';
+    showToast(`Generated ${concepts.length} concept${concepts.length > 1 ? 's' : ''}`);
+  }, 600);
+}
+
+function buildConcepts(seedText, nicheProducts) {
+  const words = seedText.toLowerCase().split(/\s+/).filter(w => w.length > 3);
+  const concepts = [];
+  const usedNames = new Set();
+
+  for (let i = 0; i < conceptCount; i++) {
+    // Pick a base product name
+    let name = nicheProducts[i % nicheProducts.length];
+    if (usedNames.has(name)) {
+      name = name + ' Pro';
+    }
+    if (usedNames.has(name)) {
+      name = name + ' ' + (i + 1);
+    }
+    usedNames.add(name);
+
+    // Build concept
+    const category = PRESETS.categories[Math.floor(Math.random() * PRESETS.categories.length)];
+    const format = PRESETS.formats[Math.floor(Math.random() * PRESETS.formats.length)];
+    const price = pickPrice(category);
+    const desc = buildDescription(seedText, category, format);
+
+    // Tags
+    const tags = [
+      PRESETS.tags[Math.floor(Math.random() * PRESETS.tags.length)],
+      category.toLowerCase().replace(/\s+/g, '-'),
+      format.split(' ')[0].toLowerCase()
+    ];
+
+    concepts.push({ name, category, format, price, desc, tags });
+  }
+
+  return concepts;
+}
+
+function pickPrice(category) {
+  const ranges = {
+    'Templates': [19, 29, 39, 49],
+    'Prompt Pack': [29, 39, 49, 59],
+    'Notion System': [39, 49, 59, 79],
+    'Spreadsheet Kit': [19, 29, 39],
+    'Mini Course': [49, 59, 79, 97],
+    'Toolkit': [39, 49, 59, 79],
+    'Guide + Templates': [29, 39, 49],
+    'Community Access': [19, 29, 39],
+    'Swipe File': [29, 39, 49],
+    'Workbook': [19, 24, 29, 39],
+  };
+  const opts = ranges[category] || [29, 39, 49];
+  return opts[Math.floor(Math.random() * opts.length)];
+}
+
+function buildDescription(seed, category, format) {
+  // Extract key themes from seed
+  const themes = seed.slice(0, 60).trim();
+  const templates = [
+    `${category} for ${themes.toLowerCase().includes('for') ? themes : 'professionals'}. Includes ${format.toLowerCase()} with ready-to-use assets.`,
+    `A complete ${category.toLowerCase()} system: ${format.toLowerCase()}, designed for ${themes.split(' ').slice(0, 4).join(' ')} workflows.`,
+    `${format.split(' + ').map(w => w.trim()).join(' + ')} ${category.toLowerCase()} focused on ${themes.split(' ').slice(0, 3).join(' ')}.`
+  ];
+  return templates[Math.floor(Math.random() * templates.length)];
+}
+
+function renderConcepts(concepts) {
+  const container = document.getElementById('previewBody');
+  container.innerHTML = '';
+
+  concepts.forEach((c, idx) => {
+    const card = document.createElement('div');
+    card.className = 'concept';
+    card.style.animationDelay = `${idx * 0.05}s`;
+
+    const tagsHtml = c.tags.map(t => `<span class="concept-tag">${escapeHtml(t)}</span>`).join('');
+
+    card.innerHTML = `
+      <div class="concept-top">
+        <div class="concept-name">${escapeHtml(c.name)}</div>
+        <div class="concept-price">$${c.price}</div>
+      </div>
+      <div class="concept-desc">${escapeHtml(c.desc)}</div>
+      <div class="concept-tags">
+        <span class="concept-tag" style="color:var(--accent-text)">${escapeHtml(c.category)}</span>
+        <span class="concept-tag">${escapeHtml(c.format)}</span>
+        ${tagsHtml}
+      </div>
+      <div class="concept-actions">
+        <button class="concept-btn primary" onclick="copyConcept('${escapeHtml(c.name)}', ${c.price})">Copy Details</button>
+        <button class="concept-btn" onclick="refineConcept(this)">Refine</button>
+        <button class="concept-btn" onclick="removeConcept(this)">Remove</button>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+
+  document.getElementById('previewCount').textContent = concepts.length + ' concept' + (concepts.length !== 1 ? 's' : '');
+}
+
+function updateStats(concepts) {
+  totalGenerated += concepts.length;
+  const prices = concepts.map(c => c.price);
+  allPrices = allPrices.concat(prices);
+  document.getElementById('statTotal').textContent = totalGenerated;
+  const avg = allPrices.length ? Math.round(allPrices.reduce((a, b) => a + b, 0) / allPrices.length) : 0;
+  document.getElementById('statAvg').textContent = '$' + avg;
+}
+
+function copyConcept(name, price) {
+  const text = `${name} — $${price} digital product concept`;
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('Copied to clipboard');
+  });
+}
+
+function refineConcept(btn) {
+  const card = btn.closest('.concept');
+  const nameEl = card.querySelector('.concept-name');
+  const descEl = card.querySelector('.concept-desc');
+  const name = nameEl.textContent;
+  // Simple refinement: add adjective
+  const enhancers = ['Advanced', 'Pro', 'Essentials', 'Complete', 'Ultimate'];
+  const enhancer = enhancers[Math.floor(Math.random() * enhancers.length)];
+  if (!name.startsWith(enhancer)) {
+    nameEl.textContent = enhancer + ' ' + name;
+    showToast('Refined: ' + nameEl.textContent);
+  } else {
+    showToast('Already refined');
+  }
+}
+
+function removeConcept(btn) {
+  const card = btn.closest('.concept');
+  card.style.opacity = '0';
+  setTimeout(() => {
+    card.remove();
+    const remaining = document.querySelectorAll('.concept').length;
+    document.getElementById('previewCount').textContent = remaining + ' concept' + (remaining !== 1 ? 's' : '');
+  }, 200);
+}
+
+function clearAll() {
+  document.getElementById('input').value = '';
+  document.getElementById('previewBody').innerHTML = `
+    <div class="empty">
+      <div class="empty-icon">◈</div>
+      <div class="empty-text">Enter a product description and generate to see digital product concepts here.</div>
+      <div class="empty-hint">Concepts include pricing, format, and Gumroad-ready tags.</div>
+    </div>
+  `;
+  document.getElementById('previewCount').textContent = '0 concepts';
+  totalGenerated = 0;
+  allPrices = [];
+  document.getElementById('statTotal').textContent = '0';
+  document.getElementById('statAvg').textContent = '—';
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2000);
+}
+
+// Keyboard shortcut: Ctrl+Enter to generate
+document.getElementById('input').addEventListener('keydown', (e) => {
+  if (e.ctrlKey && e.key === 'Enter') {
+    generate();
+  }
+});
+</script>
+</body>
+</html>

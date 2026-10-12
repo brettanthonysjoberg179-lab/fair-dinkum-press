@@ -1,0 +1,124 @@
+{
+  "slug": "REDDIT_SEARCH_ACROSS_SUBREDDITS",
+  "version": "20260826_00",
+  "schemaPath": "/home/brettanthonysjoberg179/.composio/tool_definitions/REDDIT_SEARCH_ACROSS_SUBREDDITS.json",
+  "inputSchema": {
+    "type": "object",
+    "title": "SearchAcrossSubredditsRequest",
+    "required": [
+      "search_query"
+    ],
+    "properties": {
+      "sort": {
+        "enum": [
+          "relevance",
+          "hot",
+          "new",
+          "top",
+          "comments"
+        ],
+        "type": "string",
+        "title": "Sort",
+        "default": "relevance",
+        "examples": [
+          "relevance",
+          "hot",
+          "new",
+          "top",
+          "comments"
+        ],
+        "description": "The criterion for sorting search results. 'relevance' (default) sorts by relevance to the query. 'hot' sorts by trending posts with recent upvotes and activity. 'new' sorts by newest first. 'top' sorts by highest score (typically all-time). 'comments' sorts by the number of comments."
+      },
+      "after": {
+        "type": "string",
+        "title": "After",
+        "examples": [
+          "t3_1abc2de"
+        ],
+        "description": "Pagination cursor to fetch the next page of results. Use the `after` value from the previous response to get subsequent results."
+      },
+      "limit": {
+        "type": "integer",
+        "title": "Limit",
+        "default": 5,
+        "maximum": 100,
+        "examples": [
+          "5",
+          "10",
+          "25"
+        ],
+        "description": "The maximum number of search results to return. Default is 5. Maximum allowed value is 100. Paginate beyond the first page using the `after` cursor from `data.after` in the response; deduplicate results across pages by post `id`."
+      },
+      "before": {
+        "type": "string",
+        "title": "Before",
+        "examples": [
+          "t3_1abc2de"
+        ],
+        "description": "Pagination cursor to fetch the previous page of results. Use the `before` value from the previous response to get preceding results."
+      },
+      "restrict_sr": {
+        "type": "boolean",
+        "title": "Restrict Sr",
+        "default": true,
+        "examples": [
+          true,
+          false
+        ],
+        "description": "If True (default), confines the search to posts and comments within subreddits. If False, the search scope is broader and may include matching subreddit names or other Reddit entities."
+      },
+      "result_type": {
+        "type": "array",
+        "items": {
+          "enum": [
+            "sr",
+            "link",
+            "user"
+          ],
+          "type": "string",
+          "title": "ResultType"
+        },
+        "title": "Result Type",
+        "examples": [
+          [
+            "link"
+          ],
+          [
+            "link",
+            "sr"
+          ]
+        ],
+        "description": "Restrict results to specific content types: 'sr' (subreddits), 'link' (posts), and 'user' (users). Because this action returns posts only, result_type must include 'link'; non-post matches in mixed searches are omitted. Use GET_SUBREDDITS_SEARCH for subreddit-only search."
+      },
+      "time_filter": {
+        "enum": [
+          "hour",
+          "day",
+          "week",
+          "month",
+          "year",
+          "all"
+        ],
+        "type": "string",
+        "title": "TimeFilter",
+        "examples": [
+          "day",
+          "week",
+          "month"
+        ],
+        "description": "Restrict results to this time period: hour, day, week, month, year, or all. If omitted, Reddit applies its own default (typically 'all' for relevance sort)."
+      },
+      "search_query": {
+        "type": "string",
+        "title": "Search Query",
+        "examples": [
+          "latest AI research",
+          "funny cat videos",
+          "url:youtube.com",
+          "site:imgur.com"
+        ],
+        "description": "The search query string. Supports Reddit search operators: 'title:', 'author:', 'subreddit:', 'url:', 'site:', 'flair:', 'self:yes/no', 'nsfw:yes/no', and boolean operators (AND, OR, NOT). Raw URLs (starting with http:// or https://) are not allowed - use the 'url:' or 'site:' operators instead (e.g., 'url:example.com' to find posts linking to that domain)."
+      }
+    }
+  }
+}

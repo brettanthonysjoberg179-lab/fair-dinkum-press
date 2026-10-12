@@ -1,0 +1,85 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  // Use Claude 3.5 Sonnet by default for high-quality engineering tasks.
+  "model": "anthropic/claude-sonnet-4-5",
+  // Ensure the shell matches the environment.
+  "shell": "/bin/bash",
+  // Enable auto-formatting for cleaner codebases.
+  "formatter": true,
+  // Set the default agent to the MCP orchestrator.
+  "default_agent": "mcp-orchestrator",
+  // MCP Server integrations.
+  "mcp_servers": {
+    "rags-memory": {
+      "command": "python3",
+      "args": ["/home/brettanthonysjoberg179/rags_memory_db/mcp_server.py", "--stdio"],
+      "env": {
+        "PYTHONPATH": "/home/brettanthonysjoberg179/rags_memory_db"
+      },
+      "transport": "stdio"
+    },
+    "content-workforce": {
+      "command": "python3",
+      "args": ["/home/brettanthonysjoberg179/contents-generator-workforce/mcp_server/main.py", "--stdio"],
+      "env": {
+        "PYTHONPATH": "/home/brettanthonysjoberg179/contents-generator-workforce",
+        "OLLAMA_BASE_URL": "http://localhost:11434",
+        "OLLAMA_MODEL": "llama3.2:latest",
+        "GEMINI_API_KEY": "${GEMINI_API_KEY}",
+        "GEMINI_MODEL": "gemini-2.5-flash",
+        "HF_TOKEN": "${HF_TOKEN}"
+      },
+      "transport": "stdio"
+    },
+    "digital-products": {
+      "command": "python3",
+      "args": ["/home/brettanthonysjoberg179/digital_product_workforce/app.py", "--stdio"],
+      "env": {
+        "PYTHONPATH": "/home/brettanthonysjoberg179/digital_product_workforce"
+      },
+      "transport": "stdio"
+    },
+    "cloudflare": {
+      "type": "remote",
+      "url": "https://mcp.cloudflare.com/mcp",
+      "enabled": true,
+      "headers": { "Authorization": "Bearer {env:CLOUDFLARE_API_TOKEN}" }
+    },
+    "cloudflare-docs": {
+      "type": "remote",
+      "url": "https://docs.mcp.cloudflare.com/mcp",
+      "enabled": true,
+      "headers": { "Authorization": "Bearer {env:CLOUDFLARE_API_TOKEN}" }
+    },
+    "cloudflare-bindings": {
+      "type": "remote",
+      "url": "https://bindings.mcp.cloudflare.com/mcp",
+      "enabled": true,
+      "headers": { "Authorization": "Bearer {env:CLOUDFLARE_API_TOKEN}" }
+    },
+    "cloudflare-builds": {
+      "type": "remote",
+      "url": "https://builds.mcp.cloudflare.com/mcp",
+      "enabled": true,
+      "headers": { "Authorization": "Bearer {env:CLOUDFLARE_API_TOKEN}" }
+    },
+    "cloudflare-observability": {
+      "type": "remote",
+      "url": "https://observability.mcp.cloudflare.com/mcp",
+      "enabled": true,
+      "headers": { "Authorization": "Bearer {env:CLOUDFLARE_API_TOKEN}" }
+    }
+  },
+  // Agent definitions (subagents catalog).
+  "agents": {
+    "mcp-orchestrator": {
+      "description": "Orchestrates across RAGS Memory, Content Generator Workforce, and Digital Product Workforce MCP servers",
+      "mode": "primary",
+      "permissions": [
+        { "action": "shell", "resource": "*", "effect": "ask" },
+        { "action": "edit", "resource": "*", "effect": "ask" },
+        { "action": "read", "resource": "*", "effect": "allow" }
+      ]
+    }
+  }
+}
