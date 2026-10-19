@@ -80,7 +80,7 @@ class GmailHITLGateway:
             "body": body
         }
 
-    def send_morning_digest(self, metrics_summary: dict = None) -> dict:
+    def send_morning_digest(self, metrics_summary = None) -> dict:
         """
         Compiles and sends the automated morning operational digest summarizing agent activity,
         leads, content publications, and SaaS metrics from the database.
@@ -99,23 +99,27 @@ class GmailHITLGateway:
             cursor.execute("SELECT COUNT(*) as count FROM content_records WHERE timestamp >= datetime('now', '-1 day')")
             content_count = cursor.fetchone()["count"]
             
-            summary = metrics_summary or {
+            summary = metrics_summary if metrics_summary is not None else {
                 "agent_actions_24h": log_count,
                 "new_leads_24h": lead_count,
                 "content_published_24h": content_count
             }
         except Exception as e:
             logger.warning(f"Could not query metrics for digest: {e}")
-            summary = metrics_summary or {"error": str(e)}
+            summary = metrics_summary if metrics_summary is not None else {"error": str(e)}
         finally:
             conn.close()
 
         today_str = datetime.now().strftime("%Y-%m-%d")
         subject = f"[Fair Dinkum Press] Morning Digest - {today_str}"
-        body = f"Good morning,\n\nHere is your autonomous enterprise operational summary for {today_str}:\n\n"
-        for k, v in summary.items():
-            body += f"- {k.replace('_', ' ').title()}: {v}\n"
-        body += "\nAll autonomous agent systems operating nominally."
+        
+        if isinstance(summary, str):
+            body = summary
+        else:
+            body = f"Good morning,\n\nHere is your autonomous enterprise operational summary for {today_str}:\n\n"
+            for k, v in summary.items():
+                body += f"- {k.replace('_', ' ').title()}: {v}\n"
+            body += "\nAll autonomous agent systems operating nominally."
 
         conn = get_db_connection(self.db_path)
         try:
