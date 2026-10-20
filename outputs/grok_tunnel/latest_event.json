@@ -1,0 +1,4 @@
+{
+  "event": "grok_realtime_alert",
+  "data": "New market anomaly detected in racing intelligence feed."
+}

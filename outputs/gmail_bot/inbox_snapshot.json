@@ -1,0 +1,14 @@
+[
+  {
+    "id": "msg_001",
+    "sender": "partner@affiliatehub.com",
+    "subject": "Affiliate Partnership Inquiry for The Autonomous Solopreneur",
+    "snippet": "Hi Fair Dinkum Press team, we love your ebook and want to feature it in our upcoming newsletter..."
+  },
+  {
+    "id": "msg_002",
+    "sender": "customer@techstartup.io",
+    "subject": "Question regarding AgentKit setup and MCP tools",
+    "snippet": "Can your MCP server connect to our existing PostgreSQL database and run automated queries?"
+  }
+]
