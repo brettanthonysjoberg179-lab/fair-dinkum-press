@@ -1,0 +1,16 @@
+[
+  {
+    "message_id": "msg_001",
+    "recipient": "partner@affiliatehub.com",
+    "subject": "Re: Affiliate Partnership Inquiry for The Autonomous Solopreneur",
+    "body": "Hi there,\n\nThank you for your interest in partnering with Fair Dinkum Press! We would be thrilled to feature 'The Autonomous Solopreneur' and our agent toolkits in your upcoming newsletter. Our affiliate program offers competitive commission splits and ready-to-use promotional assets.\n\nPlease let us know your preferred tracking setup, and we'll dispatch your affiliate link right away.\n\nBest regards,\nFair Dinkum Press Partnership Team",
+    "status": "sent"
+  },
+  {
+    "message_id": "msg_002",
+    "recipient": "customer@techstartup.io",
+    "subject": "Re: Question regarding AgentKit setup and MCP tools",
+    "body": "Hi there,\n\nThank you for reaching out regarding AgentKit and our MCP server architecture. Yes! AgentKit supports secure, connection-pooled integrations with PostgreSQL as well as vector databases and SQLite ledgers, allowing your autonomous agents to execute queries and manage state safely.\n\nCheck out our documentation repo or let us know if you'd like a guided technical walkthrough.\n\nBest regards,\nAgentKit Engineering Team",
+    "status": "sent"
+  }
+]
