@@ -1,0 +1,13 @@
+{
+  "title": "The Autonomous Solopreneur: Building & Scaling Multi-Agent AI Enterprises",
+  "publisher": "Fair Dinkum Press",
+  "abn": "ABN 48 123 456 789 (Fair Dinkum Press Pty Ltd, Melbourne, Australia)",
+  "blurb": "Discover how solo founders and technical creators are bypassing traditional team limitations to build million-dollar micro-enterprises. This comprehensive playbook reveals the exact architecture of autonomous agent swarms, Model Context Protocol (MCP) integrations, programmatic SEO, and headless publishing workflows that run 24/7 with zero manual overhead.",
+  "about_author": "Fair Dinkum Press is an independent publishing house and autonomous agent laboratory focused on zero-employee business architectures, programmatic publishing, and AI compliance under Australian law.",
+  "copyright": "© 2026 Fair Dinkum Press. All rights reserved. No part of this publication may be reproduced without prior written consent.",
+  "ai_disclaimer": "Notice of Artificial Intelligence Assistance: Portions of this publication were produced with the assistance of advanced AI agent swarms. Every manuscript undergoes rigorous human editorial review, factual auditing, and compliance verification prior to release.",
+  "cover_specifications": {
+    "front_cover_prompt": "Minimalist modern tech book cover, dark obsidian background, glowing blue neural network architecture nodes, bold clean typography reading 'The Autonomous Solopreneur', premium aesthetic.",
+    "back_cover_prompt": "Professional publishing back cover layout, author bio placeholder, barcode area, clean typography on dark charcoal background."
+  }
+}
