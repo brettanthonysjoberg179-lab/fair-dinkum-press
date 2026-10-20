@@ -1,0 +1,10 @@
+{
+  "bot_name": "FairDinkumGrokbot",
+  "status": "active",
+  "capabilities": [
+    "Real-time xAI Grok intelligence synthesis",
+    "Automated lead triage and customer support",
+    "Racing intelligence & publishing alerts"
+  ],
+  "log_path": "logs/grokbot.log"
+}
