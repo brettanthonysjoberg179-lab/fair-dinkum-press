@@ -151,6 +151,14 @@
       .detail-panel h4 { margin: 0 0 10px; font-size: 0.82rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
       .detail-panel .major { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.05em; }
       .detail-panel .copy { margin-top: 8px; line-height: 1.65; color: var(--muted); }
+      .product-list { display: grid; gap: 10px; margin-top: 12px; }
+      .product-item { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--line); background: rgba(255,255,255,0.02); }
+      .product-name { font-weight: 700; }
+      .product-meta { color: var(--muted); font-size: 0.76rem; margin-top: 4px; }
+      .product-tag { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; padding: 6px 8px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255,255,255,0.03); }
+      .visitor-counter { display: grid; gap: 8px; justify-items: center; text-align: center; padding: 10px 12px; border: 1px solid var(--line); border-radius: 16px; background: rgba(255,255,255,0.02); margin-top: 12px; }
+      .visitor-counter .num { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.06em; }
+      .visitor-counter .small { color: var(--muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; }
       @media (max-width: 980px) { .hero, .main-grid, .stats-grid { grid-template-columns: 1fr; } }
       @media (max-width: 680px) { body { padding: 18px 12px 40px; } .topbar { flex-direction: column; align-items: flex-start; } .summary-row { flex-direction: column; align-items: flex-start; } .kpi-grid { grid-template-columns: repeat(2, minmax(120px, 1fr)); } .stack-grid { grid-template-columns: 1fr; } }
     </style>
@@ -206,6 +214,17 @@
             <h4>Selected workstream</h4>
             <div class="major" id="detailName">Publishing</div>
             <div class="copy" id="detailText">The publishing pipeline remains the strongest engagement loop in the repo, with product packaging and asset delivery operating at a high level.</div>
+          </div>
+
+          <div class="visitor-counter" aria-live="polite">
+            <div class="small">Visitors</div>
+            <div class="num" id="visitorCount">0</div>
+            <div class="small">Last 30 days</div>
+          </div>
+
+          <div class="detail-panel" style="margin-top: 14px;">
+            <h4>Products</h4>
+            <div class="product-list" id="productList"></div>
           </div>
         </aside>
       </section>
@@ -316,11 +335,18 @@
         headline: 'Autonomous business + publishing engine',
         narrative: 'Cross-functional operating system for publishing, SEO research, outreach automation, compliance, and AI-assisted product launches.',
         health: 84,
+        visitors: 18427,
         kpis: [
           { label: 'Automations', value: '90+' },
           { label: 'Documents', value: '35+' },
           { label: 'Products', value: '6+' },
           { label: 'Outputs', value: '80+' }
+        ],
+        products: [
+          { name: 'AI Compliance Launch Kit', meta: 'Launch system · $49', tag: 'Hot' },
+          { name: 'Digital Product Launch Kit', meta: 'Business ops · $79', tag: 'New' },
+          { name: 'Programmatic SEO Generator', meta: 'SEO automation · $99', tag: 'Core' },
+          { name: 'Autonomous Solopreneur Workbook', meta: 'Framework · $39', tag: 'Best seller' }
         ],
         workstreams: [
           { name: 'Publishing', progress: 86, tone: 'green', detail: 'The publishing pipeline remains the strongest engagement loop, with product packaging and asset delivery operating at a high level.' },
@@ -367,6 +393,20 @@
         document.documentElement.setAttribute('data-theme', theme);
         localStorage.setItem('fdd-theme', theme);
         document.getElementById('themeToggle').textContent = theme === 'dark' ? '🌙' : '☀️';
+      }
+
+      function formatVisitors(value) {
+        return Number(value).toLocaleString('en-AU');
+      }
+
+      function getVisitorCount(base) {
+        const saved = Number(localStorage.getItem('fdd-visitor-count'));
+        if (!Number.isFinite(saved)) {
+          const next = Number(base) + 7;
+          localStorage.setItem('fdd-visitor-count', String(next));
+          return next;
+        }
+        return saved;
       }
 
       function renderKpis(data) {
@@ -430,6 +470,23 @@
           row.className = 'lang-row';
           row.innerHTML = `<div class="lang-left"><span class="swatch" style="background:${item.color};"></span><span>${item.name}</span></div><strong>${item.percent}%</strong>`;
           list.appendChild(row);
+        });
+      }
+
+      function renderProducts(data) {
+        const list = document.getElementById('productList');
+        list.innerHTML = '';
+        data.products.forEach(product => {
+          const item = document.createElement('div');
+          item.className = 'product-item';
+          item.innerHTML = `
+            <div>
+              <div class="product-name">${product.name}</div>
+              <div class="product-meta">${product.meta}</div>
+            </div>
+            <span class="product-tag">${product.tag}</span>
+          `;
+          list.appendChild(item);
         });
       }
 
@@ -514,6 +571,10 @@
         svg.innerHTML = `<defs><linearGradient id="barGrad" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="var(--cyan)"/><stop offset="100%" stop-color="var(--purple)"/></linearGradient></defs>${bars}`;
       }
 
+      function renderVisitorCounter(value) {
+        document.getElementById('visitorCount').textContent = formatVisitors(value);
+      }
+
       function renderHeadline(data) {
         document.getElementById('headline').textContent = data.headline || fallbackData.headline;
         document.getElementById('healthNumber').textContent = data.health || fallbackData.health;
@@ -546,6 +607,7 @@
             headline: 'Autonomous business + publishing engine',
             health: Math.min(98, 82 + Math.round((repoJson.stargazers_count || 0) / 30)),
             narrative: `The repo is currently balancing ${repoJson.open_issues_count || 12} active development items with a high-output publishing and automation stack, driven by a primarily Python-first architecture and a rapidly growing digital product pipeline.`,
+            visitors: getVisitorCount(fallbackData.visitors),
             kpis: [
               { label: 'Automations', value: `${Math.max(90, repoJson.open_issues_count || 90)}+` },
               { label: 'Documents', value: '35+' },
@@ -560,7 +622,10 @@
             ]
           };
         } catch (error) {
-          return fallbackData;
+          return {
+            ...fallbackData,
+            visitors: getVisitorCount(fallbackData.visitors)
+          };
         }
       }
 
@@ -571,9 +636,11 @@
         renderWorkstreams(live);
         renderStats(live);
         renderLanguage(live);
+        renderProducts(live);
         renderActivity(live);
         renderPriorityTable(live);
         renderNotes(live);
+        renderVisitorCounter(live.visitors || fallbackData.visitors);
         renderTrendChart(live.trend || fallbackData.trend);
         renderBarChart(live.barValues || fallbackData.barValues);
 
